@@ -3,16 +3,7 @@ import { axiosInstance } from '../services/axios.config';
 import Table from '../comp/table/Table'
 const Products = () => {
     
-    const [ items, setItems ] = useState([
-            // {
-            //     name: "mini encend",
-            //     description: "encendedor bic 10g",
-            //     stock: 33,
-            //     price: 300,
-            //     qr: '/!"/!!',
-            //     id: "1"
-            // }
-    ]);
+    const [ items, setItems ] = useState([]);
 
     useEffect(() => {
         axiosInstance.get('/')
@@ -26,7 +17,10 @@ const Products = () => {
             .catch(err => console.log(err))
     },[])
 
-
+    const editItem =()=>{
+        //TODO aca se hace un put
+        console.log("editando el item")
+    }
 
 
     return (
@@ -35,7 +29,7 @@ const Products = () => {
             <div className='container mt-3'>
             {
                 items.length > 0 ?
-                    <Table items = {items}/>
+                    <Table items = {items} editItem = {editItem}/>
                 :
                 <h2 style={{textAlign:'center'}}>No hay productos</h2>
             }
